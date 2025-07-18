@@ -219,17 +219,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_augroup('neotree', {})
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Open Neotree automatically',
-  group = 'neotree',
-  callback = function()
-    if vim.fn.argc() == 0 then
-      vim.cmd.neotree 'Neotree reveal'
-    end
-  end,
-})
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -981,8 +970,6 @@ require('lazy').setup({
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   -- Calls the plugin folder to be loaded
   { import = 'plugins' },
   --
