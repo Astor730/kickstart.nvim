@@ -9,24 +9,14 @@ return {
   end,
   lazy = false,
   config = function()
-    -- Move current tab left or right
-    -- Close current tab
-    -- Open a file in a new tab
-    -- Add git status to the file
-    -- Pin buffer/file
-    -- close all but current buffer
-    -- Add sorting to the buffers
-    -- add min and max length of buffer size
-    -- add padding and see how it feels
-    local map = vim.api.nvim_set_keymap
-    local opts = { noremap = true, silent = true }
-    map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-    map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-    map('n', '<A-Shift-,>', '<Cmd>BufferMovePrevious<CR>', opts)
-    map('n', 'A-Shift-.', '<Cmd>BufferMoveNext<CR>', opts)
-    map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-    map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-    map('n', '<A-C>', '<Cmd>BuggerCloseAllButCurrent<CR>', opts)
+    local map = vim.keymap.set
+    map('n', '<A-,>', ':BufferPrevious<CR>', { noremap = true, silent = true, desc = 'Ba[R]Bar Buffer[P]revious' })
+    map('n', '<A-.>', ':BufferNext<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar Buffer[N]ext' })
+    map('n', '<leader>rmp', ':BufferMovePrevious<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar [M]oveBuffer[P]revious' })
+    map('n', '<leader>rmn', ':BufferMoveNext<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar [M]oveBuffer[N]ext' })
+    map('n', '<leader>ri', ':BufferPin<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar p[I]n' })
+    map('n', '<leader>rc', ':BufferClose<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar Buffer[C]lose' })
+    map('n', '<leader>ra', ':BufferCloseAllButCurrent<CR>', { noremap = true, silent = true, desc = 'Ba[R]bar BufferClose[A]llButCurrent' })
     require('barbar').setup {
       -- this is where options are set
       animation = true,
@@ -34,8 +24,6 @@ return {
       highlight_visible = false,
       highlight_alternate = false,
       highlight_inactive_file_icons = false,
-      maximum_length = 10,
-      minimum_length = 10,
       icons = {
         gitsigns = {
           added = { enabled = true, icon = '+' },
@@ -53,11 +41,22 @@ return {
       sort_by_name = true,
       sidebar_filetypes = {
         ['neo-tree'] = {
-          event = 'BufWinLeave',
+          event = 'bufwinleave',
         },
       },
-      non_name_title = 'Empty File',
+      non_name_title = 'empty file',
     }
-    vim.api.nvim_set_hl(0, 'BufferCurrentAdded', { link = 'BufferCurrent' })
+
+    local highlight = vim.api.nvim_set_hl
+    highlight(0, 'BufferCurrentAdded', { link = 'buffercurrent' })
+    highlight(0, 'BufferCurrentChanged', { link = 'buffercurrent' })
+    highlight(0, 'BufferCurrentDeleted', { link = 'buffercurrent' })
+    highlight(0, 'BufferVisibleAdded', { link = 'buffervisible' })
+    highlight(0, 'BufferVisibleChanged', { link = 'buffervisible' })
+    highlight(0, 'BufferVisibleDeleted', { link = 'buffervisible' })
+    highlight(0, 'BufferInactiveAdded', { link = 'bufferalternate' })
+    highlight(0, 'BufferInactiveChanged', { link = 'bufferalternate' })
+    highlight(0, 'BufferInactiveDeleted', { link = 'bufferalternate' })
+    highlight(0, 'BufferTabpageFill', { ctermbg = 'black' })
   end,
 }
