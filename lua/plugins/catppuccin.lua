@@ -32,7 +32,7 @@ return {
           surface1 = '#000000',
           surface2 = '#000000',
           overlay0 = '#316ad0',
-          overlay1 = '#ffffff',
+          overlay1 = '#000000',
           overlay2 = '#ff6cf6',
           text = '#e01b24',
           lavendar = '#b4befe',
@@ -55,6 +55,11 @@ return {
         mocha = function()
           return {
             LineNr = { fg = '#ffffff' },
+            CursorLineNr = { fg = '#ee5000' },
+            Visual = { bg = '#5a5a5a' },
+            Search = { fg = '#ffffff' },
+            IncSearch = { fg = '#ff86dd', bg = '#6f6f6f' },
+            Tabline = { fg = '#d54600' },
           }
         end,
       },
