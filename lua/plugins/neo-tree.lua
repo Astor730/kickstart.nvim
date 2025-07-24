@@ -18,11 +18,20 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['P'] = { 'toggle_preview', use_float = true, use_image_nvim = true, title = 'Neo-tree preview' },
         },
       },
     },
   },
   config = function()
+    require('neo-tree').setup {
+      window = {
+        position = 'left',
+        width = '10%',
+        auto_expand_width = true,
+      },
+      close_if_last_window = true,
+    }
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
         vim.cmd 'Neotree toggle'
