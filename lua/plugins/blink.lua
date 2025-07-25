@@ -1,6 +1,10 @@
+-- Autocompletion. This interacts with LSPs, linters, formatters and snippets to add a menu of possible completions from all of those tools
+-- Has a snippet Engine as a dependency to add snippet functionality. This is nice because you don't have to install those separately
+-- Snippets are character shortcuts that add some longer text based on input characters. Examples can be seen on the lua-snip repo
+-- freindly-snippets is just a library of snippets
+-- I would suggest looking at deepwiki to understand more deeply how all of the tools work together
 return {
-
-  { -- Autocompletion
+  {
     'saghen/blink.cmp',
     event = 'VimEnter',
     version = '1.*',
@@ -19,16 +23,17 @@ return {
           return 'make install_jsregexp'
         end)(),
         dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          --    To add a language, framework or markup language
+          --    A list of all the avilalble snippets to add are available on the wiki portion of the github repo
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
+        -- opts for Luasnip
         opts = {},
       },
       'folke/lazydev.nvim',
@@ -38,17 +43,7 @@ return {
     opts = {
       keymap = {
         -- 'default' (recommended) for mappings similar to built-in completions
-        --   <c-y> to accept ([y]es) the completion.
-        --    This will auto-import if your LSP supports it.
-        --    This will expand snippets if the LSP sent a snippet.
-        -- 'super-tab' for tab to accept
-        -- 'enter' for enter to accept
-        -- 'none' for no mappings
-        --
-        -- For an understanding of why the 'default' preset is recommended,
-        -- you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
+        -- <c-y> to accept ([y]es) the completion.
         --
         -- All presets have the following mappings:
         -- <tab>/<s-tab>: move to right/left of your snippet expansion
@@ -57,10 +52,7 @@ return {
         -- <c-e>: Hide menu
         -- <c-k>: Toggle signature help
         --
-        -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
       appearance = {
@@ -71,7 +63,7 @@ return {
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 200 },
       },
 
       sources = {

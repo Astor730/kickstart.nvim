@@ -1,3 +1,8 @@
+-- Adds a tab bar with open buffers(files) at the top of neovim
+-- gitsigns and web dev icons are dependencies so that they can appear next to buffer(file) names
+-- keybinds are set to move between buffers(files), rearange them and close them
+-- tab bar is offset by neo-tree in the sidebar_filetypes option
+-- For more info check the readme in the repo it's pretty good. Deep wiki is also your friend
 return {
   'romgrk/barbar.nvim',
   dependencies = {
@@ -32,7 +37,6 @@ return {
         },
         separator = {
           left = '▎',
-          right = '▎',
         },
       },
       sort = {

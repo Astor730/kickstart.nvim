@@ -1,3 +1,5 @@
+-- Formats code in a buffer(file) when run. It uses the current lsp to do formatting
+-- Currently formats when the buffer(file) is saved
 return {
 
   { -- Autoformat
