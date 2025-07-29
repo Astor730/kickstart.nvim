@@ -27,7 +27,7 @@ return {
     require('neo-tree').setup {
       window = {
         position = 'left',
-        width = '10%',
+        width = 0.1,
         auto_expand_width = true,
       },
       close_if_last_window = true,
