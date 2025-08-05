@@ -27,10 +27,10 @@ return {
     require('neo-tree').setup {
       window = {
         position = 'left',
-        width = 0.1,
-        auto_expand_width = true,
+        width = 0.15,
       },
       close_if_last_window = true,
+      sort_case_insensitive = true,
     }
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function()
