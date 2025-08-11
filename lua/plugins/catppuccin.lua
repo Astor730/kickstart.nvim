@@ -1,6 +1,6 @@
--- Sets Catppuccin as the color scheme for Neovim
--- The color and highlight overrides is my own baked catppuccin color
--- Use https://catbbrew.com/design to preivew custom brewed flavours
+-- -- Sets Catppuccin as the color scheme for Neovim
+-- -- The color and highlight overrides is my own baked catppuccin color
+-- -- Use https://catbbrew.com/design to preivew custom brewed flavours
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
