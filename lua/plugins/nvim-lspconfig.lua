@@ -162,6 +162,8 @@ return {
       --  For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
+        zls = {},
+        codelldb = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -196,6 +198,8 @@ return {
         'stylua',
         'markdownlint',
         'clangd',
+        'zls',
+        'codelldb',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
